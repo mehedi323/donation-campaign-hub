@@ -1,8 +1,8 @@
 import swal from "sweetalert";
-
-  
+import PropTypes from 'prop-types';
+ 
 const CardPages = ({ card }) => {
-  const { id, name, image, price, cardBgColor, btnTextColor, titleColor, btnBgColor } = card;
+  const { id, name, image, price} = card;
 
   const handleAddToDonation = () => {
     const addedDonationArray = [];
@@ -30,8 +30,7 @@ const CardPages = ({ card }) => {
        
     }
   }
-
-
+ 
   return (
     <div>
       <div className=" bg-base-100 image-full">
@@ -50,5 +49,9 @@ const CardPages = ({ card }) => {
     </div>
   );
 };
+
+CardPages.propTypes ={
+  card: PropTypes.object.isRequired
+}
 
 export default CardPages;

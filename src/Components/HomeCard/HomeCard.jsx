@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom"; 
-
+import PropTypes from 'prop-types';
 
 const HomeCard = ({ data }) => {
   const { id, name, image, title, cardBgColor, btnTextColor, titleColor, btnBgColor } = data;
@@ -25,4 +25,7 @@ const HomeCard = ({ data }) => {
   );
 };
 
+HomeCard.propTypes ={
+  data: PropTypes.object.isRequired
+}
 export default HomeCard;
