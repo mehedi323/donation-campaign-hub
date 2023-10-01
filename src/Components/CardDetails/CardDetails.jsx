@@ -7,14 +7,13 @@ import CardPages from "./CardPages";
 const CardDetails = () => {
   const [card, setCard]= useState({})
   const {id} = useParams() 
-  const datas = useLoaderData()
+  const data = useLoaderData()
   
   useEffect(()=>{
-    const findData = datas?.find((data) =>data.id == id); 
+    const findData = data?.find((datas) =>datas.id == id); 
     setCard(findData); 
-  },[id,datas])
-  
-  console.log(card);
+  },[id,data])
+   
   return (
     <div>
        <CardPages card={card}></CardPages>

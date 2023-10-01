@@ -1,6 +1,37 @@
+import swal from "sweetalert";
 
+  
 const CardPages = ({ card }) => {
   const { id, name, image, price, cardBgColor, btnTextColor, titleColor, btnBgColor } = card;
+
+  const handleAddToDonation = () => {
+    const addedDonationArray = [];
+
+    const donationItems = JSON.parse(localStorage.getItem("donations"));
+
+    if(!donationItems) {
+      addedDonationArray.push(card);
+      localStorage.setItem("donations", JSON.stringify(addedDonationArray));
+      swal("Good job!", "products added successfully", "success");
+ 
+    }
+
+    else{
+      const isExits = donationItems.find((card) => card.id === id);
+
+      if(!isExits) {
+        addedDonationArray.push(...donationItems, card);
+        localStorage.setItem("donations", JSON.stringify(addedDonationArray));
+        swal("Good job!", "products added successfully", "success");
+
+      } else{
+        swal("Error!", "No Duplicate", "error");
+      }
+       
+    }
+  }
+
+
   return (
     <div>
       <div className=" bg-base-100 image-full">
@@ -8,7 +39,8 @@ const CardPages = ({ card }) => {
           <figure><img className="w-[1320px] h-[700px] bg-cover " src={image} alt="Shoes" /></figure>
         </div>
         <div className="card-actions  ">
-          <button className="border p-3 bg-red-600 text-[#FFF] text-xl font-semibold rounded-md border-none" >Donation ${price}</button>
+          <button onClick={handleAddToDonation} 
+           className="border p-3 bg-red-600 text-[#FFF] text-xl font-semibold rounded-md border-none" >Donation ${price}</button>
         </div>
         <div className=" ">
           <h2 className="card-title text-[#0B0B0B] font-bold text-6xl mt-4 mb-4">{name}</h2>
